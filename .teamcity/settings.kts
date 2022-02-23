@@ -6,6 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetTest
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.buildReportTab
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.dockerECRRegistry
+import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.youtrack
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
@@ -63,6 +64,16 @@ project {
             param("quota", "2")
             param("name", "abc_abc")
             param("type", "quoted")
+        }
+        youtrack {
+            id = "PROJECT_EXT_5"
+            displayName = "abc"
+            host = "http://youtrack.com"
+            userName = ""
+            password = ""
+            projectExtIds = "abc"
+            accessToken = "credentialsJSON:787cf195-6dcb-4655-8353-282659ff4fda"
+            param("authType", "accesstoken")
         }
     }
 
