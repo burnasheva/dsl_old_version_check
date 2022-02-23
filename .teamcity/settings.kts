@@ -57,6 +57,13 @@ project {
             regionCode = "eu-central-1"
             credentialsType = accessKeys()
         }
+        feature {
+            id = "PROJECT_EXT_4"
+            type = "JetBrains.SharedResources"
+            param("quota", "2")
+            param("name", "abc_abc")
+            param("type", "quoted")
+        }
     }
 
     cleanup {
