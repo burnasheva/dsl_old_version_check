@@ -5,6 +5,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetBuild
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetTest
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.buildReportTab
+import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.dockerECRRegistry
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
@@ -40,6 +41,17 @@ project {
             id = "PROJECT_EXT_1"
             title = "Code Coverage"
             startPage = "coverage.zip!index.html"
+        }
+        dockerECRRegistry {
+            id = "PROJECT_EXT_3"
+            displayName = "Amazon ECR"
+            registryId = "aaa"
+            credentialsProvider = accessKey {
+                accessKeyId = "aaa"
+                secretAccessKey = "credentialsJSON:a1f44748-7c9a-4945-a8c9-0e8d5f6fb7ac"
+            }
+            regionCode = "eu-central-1"
+            credentialsType = accessKeys()
         }
     }
 
