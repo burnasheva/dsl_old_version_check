@@ -3,6 +3,7 @@
   <tools>
     <default-versions>
       <tool-version tool-type="maven" id="maven3" />
+      <tool-version tool-type="TeamCity.csi" id="TeamCity.csi.1.0.1" />
     </default-versions>
   </tools>
 </settings>
