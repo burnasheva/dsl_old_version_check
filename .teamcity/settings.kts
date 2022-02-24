@@ -1,9 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dockerCommand
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dockerCompose
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetBuild
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetTest
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.buildReportTab
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.dockerECRRegistry
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.youtrack
@@ -160,6 +156,25 @@ object MavenUnbalancedMessages_Build : BuildType({
 object MavenUnbalancedMessages_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster : GitVcsRoot({
     name = "https://github.com/burnasheva/maven_unbalanced_messages.git#refs/heads/master"
     url = "https://github.com/burnasheva/maven_unbalanced_messages.git"
+})
+
+object CommandLine : Project({
+    name = "Command line"
+
+    buildType(CommandLine_EchoHelloWorld)
+})
+
+object CommandLine_EchoHelloWorld : BuildType({
+    name = "Simple echo hello world"
+
+    steps {
+        script {
+            dockerImage = "ubuntu"
+            scriptContent = """
+                echo "hello, world!"
+                """.trimIndent()
+        }
+    }
 })
 
 
