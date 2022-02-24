@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.csharpFile
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.ui.*
 
@@ -16,6 +17,17 @@ create(RelativeId("CsiTest"), BuildType({
 
     vcs {
         root(RelativeId("CsiTest_GitGithubComBurnashevaCsiTestGitRefsHeadsMain"))
+    }
+
+    steps {
+        csharpFile {
+            path = "hello.world.csx"
+            tool = "%teamcity.tool.TeamCity.csi.DEFAULT%"
+        }
+        csharpFile {
+            path = "include.hello.world.csx"
+            tool = "%teamcity.tool.TeamCity.csi.DEFAULT%"
+        }
     }
 
     triggers {
