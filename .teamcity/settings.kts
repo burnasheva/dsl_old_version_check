@@ -6,29 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.youtrack
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
-/*
-The settings script is an entry point for defining a TeamCity
-project hierarchy. The script should contain a single call to the
-project() function with a Project instance or an init function as
-an argument.
-
-VcsRoots, BuildTypes, Templates, and subprojects can be
-registered inside the project using the vcsRoot(), buildType(),
-template(), and subProject() methods respectively.
-
-To debug settings scripts in command-line, run the
-
-    mvnDebug org.jetbrains.teamcity:teamcity-configs-maven-plugin:generate
-
-command and attach your debugger to the port 8000.
-
-To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
--> Tool Windows -> Maven Projects), find the generate task node
-(Plugins -> teamcity-configs -> teamcity-configs:generate), the
-'Debug' option is available in the context menu for the task.
-*/
-
-version = "2019.2"
+version = "2021.2"
 
 project {
     description = "Contains all other projects"
@@ -123,6 +101,7 @@ object DockerComposeGetStarted_Build : BuildType({
 object DockerComposeGetStarted_HttpsGithubComBurnashevaDockerComposeGetStartedGitRefsHeadsMaster : GitVcsRoot({
     name = "https://github.com/burnasheva/docker-compose-get-started.git#refs/heads/master"
     url = "https://github.com/burnasheva/docker-compose-get-started.git"
+    checkoutPolicy = AgentCheckoutPolicy.USE_MIRRORS
 })
 
 
@@ -157,6 +136,7 @@ object MavenUnbalancedMessages_Build : BuildType({
 object MavenUnbalancedMessages_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster : GitVcsRoot({
     name = "https://github.com/burnasheva/maven_unbalanced_messages.git#refs/heads/master"
     url = "https://github.com/burnasheva/maven_unbalanced_messages.git"
+    checkoutPolicy = AgentCheckoutPolicy.USE_MIRRORS
 })
 
 object CommandLine : Project({
@@ -213,4 +193,5 @@ object MstestDotnet5_HttpsGithubComBurnashevaMstestDotnet5gitRefsHeadsMain : Git
     name = "https://github.com/burnasheva/mstest_dotnet5.git#refs/heads/main"
     url = "https://github.com/burnasheva/mstest_dotnet5.git"
     branch = "refs/heads/main"
+    checkoutPolicy = AgentCheckoutPolicy.USE_MIRRORS
 })
