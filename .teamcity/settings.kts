@@ -82,6 +82,7 @@ project {
     subProject(DockerComposeGetStarted)
     subProject(MstestDotnet5)
     subProject(MavenUnbalancedMessages)
+    subProject(CommandLine)
 }
 
 
