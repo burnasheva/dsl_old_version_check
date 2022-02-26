@@ -17,6 +17,7 @@ object Project : Project({
     features {
         buildReportTab {
             id = "PROJECT_EXT_1"
+            // комментарий!
             title = "Code Coverage"
             startPage = "coverage.zip!index.html"
         }
@@ -33,8 +34,8 @@ object Project : Project({
         }
         sharedResource {
             id = "PROJECT_EXT_4"
-            name = "abc_abc"
-            resourceType = quoted(2)
+            name = "abc_abc_rename"
+            resourceType = quoted(3)
         }
         youtrack {
             id = "PROJECT_EXT_5"
@@ -50,10 +51,12 @@ object Project : Project({
     cleanup {
         baseRule {
             preventDependencyCleanup = false
+            System.out.println("Hello, world")
         }
     }
 
     subProject(CommandLine.Project)
+    // another comment
     subProject(DockerComposeGetStarted.Project)
     subProject(CsiTest.Project)
     subProject(MstestDotnet5.Project)
