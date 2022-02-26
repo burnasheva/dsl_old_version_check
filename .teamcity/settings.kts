@@ -19,7 +19,7 @@ project {
     description = "Contains all other projects"
 
     params {
-        param("a", "b")
+        param("a", "с")
     }
 
     features {
