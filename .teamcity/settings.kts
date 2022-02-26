@@ -89,6 +89,7 @@ project {
     subProject(CsiTest)
     subProject(MstestDotnet5)
     subProject(MavenUnbalancedMessages)
+    subProject(MavenUnbalancedMessagesCopy)
 }
 
 
@@ -248,6 +249,62 @@ object MavenUnbalancedMessages_CopiedBuild : BuildType({
 })
 
 object MavenUnbalancedMessages_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster : GitVcsRoot({
+    name = "https://github.com/burnasheva/maven_unbalanced_messages.git#refs/heads/master"
+    url = "https://github.com/burnasheva/maven_unbalanced_messages.git"
+    checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
+})
+
+
+object MavenUnbalancedMessagesCopy : Project({
+    name = "Maven Unbalanced Messages (copy)"
+
+    vcsRoot(MavenUnbalancedMessagesCopy_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster)
+
+    buildType(MavenUnbalancedMessagesCopy_CopiedBuild)
+    buildType(MavenUnbalancedMessagesCopy_Build)
+})
+
+object MavenUnbalancedMessagesCopy_Build : BuildType({
+    name = "Build"
+
+    vcs {
+        root(MavenUnbalancedMessagesCopy_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster)
+    }
+
+    steps {
+        maven {
+            goals = "clean test"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+})
+
+object MavenUnbalancedMessagesCopy_CopiedBuild : BuildType({
+    name = "copied build"
+
+    vcs {
+        root(MavenUnbalancedMessagesCopy_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster)
+    }
+
+    steps {
+        maven {
+            goals = "clean test"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+})
+
+object MavenUnbalancedMessagesCopy_HttpsGithubComBurnashevaMavenUnbalancedMessagesGitRefsHeadsMaster : GitVcsRoot({
     name = "https://github.com/burnasheva/maven_unbalanced_messages.git#refs/heads/master"
     url = "https://github.com/burnasheva/maven_unbalanced_messages.git"
     checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
