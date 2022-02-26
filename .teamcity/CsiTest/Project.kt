@@ -12,4 +12,8 @@ object Project : Project({
     vcsRoot(CsiTest_GitGithubComBurnashevaCsiTestGitRefsHeadsMain)
 
     buildType(CsiTest_AutoDetectedBuild)
+
+    params {
+        param("а", "а")
+    }
 })
