@@ -1,6 +1,9 @@
 package MavenUnbalancedMessages.patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.MavenBuildStep
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
 /*
@@ -12,6 +15,22 @@ changeBuildType(AbsoluteId("MavenUnbalancedMessages_Build")) {
     params {
         add {
             param("111111", "1111111")
+        }
+    }
+
+    expectSteps {
+        maven {
+            goals = "clean test"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+            localRepoScope = MavenBuildStep.RepositoryScope.MAVEN_DEFAULT
+            param("maven.path", "%teamcity.tool.maven.DEFAULT%")
+        }
+    }
+    steps {
+        insert(1) {
+            script {
+                scriptContent = """echo "hello world""""
+            }
         }
     }
 }
