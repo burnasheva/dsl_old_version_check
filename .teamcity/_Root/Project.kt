@@ -17,6 +17,7 @@ object Project : Project({
 
     params {
         param("qq", "qq222")
+        param("aaaaaaa", "aaaaaaaa")
     }
 
     features {
