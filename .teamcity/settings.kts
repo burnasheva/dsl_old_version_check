@@ -132,11 +132,39 @@ object SbtHelloworld13 : Project({
 
     vcsRoot(SbtHelloworld13_HttpsGithubComBurnashevaSbtHelloworld13gitRefsHeadsMaster)
 
+    buildType(SbtHelloworld13_CopyBuild)
     buildType(SbtHelloworld13_Build)
 })
 
 object SbtHelloworld13_Build : BuildType({
     name = "Build"
+
+    params {
+        param("q", "q")
+    }
+
+    vcs {
+        root(SbtHelloworld13_HttpsGithubComBurnashevaSbtHelloworld13gitRefsHeadsMaster)
+    }
+
+    steps {
+        step {
+            type = "SBT"
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+})
+
+object SbtHelloworld13_CopyBuild : BuildType({
+    name = "Copy Build"
+
+    params {
+        param("q", "q")
+    }
 
     vcs {
         root(SbtHelloworld13_HttpsGithubComBurnashevaSbtHelloworld13gitRefsHeadsMaster)
