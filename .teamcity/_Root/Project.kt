@@ -1,7 +1,7 @@
 package _Root
 
 import _Root.vcsRoots.*
-import _Root.vcsRoots.VersionedSettings
+import _Root.vcsRoots.VersionedSettingsRoot
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
@@ -13,7 +13,7 @@ object Project : Project({
     name = "<Root project>"
     description = "Contains all other projects"
 
-    vcsRoot(VersionedSettings)
+    vcsRoot(VersionedSettingsRoot)
 
     features {
         feature {
@@ -26,8 +26,8 @@ object Project : Project({
         versionedSettings {
             id = "PROJECT_EXT_2"
             mode = VersionedSettings.Mode.ENABLED
-            buildSettingsMode = VersionedSettings.BuildSettingsMode.USE_CURRENT_SETTINGS
-            rootExtId = VersionedSettings.id
+            buildSettingsMode = VersionedSettings.BuildSettingsMode.PREFER_SETTINGS_FROM_VCS
+            rootExtId = VersionedSettingsRoot.id
             showChanges = false
             settingsFormat = VersionedSettings.Format.KOTLIN
             storeSecureParamsOutsideOfVcs = true
