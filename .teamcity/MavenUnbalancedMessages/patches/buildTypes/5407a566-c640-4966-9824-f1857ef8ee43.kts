@@ -32,5 +32,11 @@ changeBuildType(AbsoluteId("MavenUnbalancedMessages_Build")) {
                 scriptContent = """echo "hello world""""
             }
         }
+        insert(2) {
+            script {
+                name = "New build step"
+                scriptContent = """echo "hello world""""
+            }
+        }
     }
 }
