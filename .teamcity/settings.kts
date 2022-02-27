@@ -33,6 +33,10 @@ version = "2018.1"
 project {
     description = "Contains all other projects"
 
+    params {
+        param("qq", "qq")
+    }
+
     features {
         feature {
             id = "PROJECT_EXT_1"
